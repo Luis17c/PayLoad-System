@@ -1,8 +1,8 @@
 import { container } from "tsyringe";
-import { iUserRepository } from "../../interfaces/iUserRepository";
-import { usersRepository } from "../typeorm/usersRepository";
+import { iUserRepository } from "../../interfaces/IUserRepository";
+import { UsersRepository } from "../typeorm/UsersRepository";
 
 container.registerSingleton<iUserRepository>(
     'usersRepository',
-    usersRepository
+    UsersRepository
 )

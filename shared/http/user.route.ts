@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { checkEmailService } from "../../user/services/checkEmailService";
-import { createUserService } from "../../user/services/createUserService";
+import { CheckEmailService } from "../../user/services/CheckEmailService";
+import { createUserService } from "../../user/services/CreateUserService";
 
 export const userRoute = Router()
 
 userRoute.get("/", async (req, res)=>{
     var userData = req.body
 
-    const checkEmail = new checkEmailService()
+    const checkEmail = new CheckEmailService()
 
     const emailIsValid = checkEmail.use(userData.email)
 

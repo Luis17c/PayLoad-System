@@ -1,6 +1,6 @@
 import { table } from "console"
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
-import { users } from "../../../user/infra/typeorm/users"
+import { Users } from "../../../user/infra/typeorm/Users"
 
 export class createTable1672258771022 implements MigrationInterface {
 

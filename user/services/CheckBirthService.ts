@@ -1,4 +1,4 @@
-export class checkBirthService{
+export class CheckBirthService{
     constructor(){}
 
     use(birthDate:Date){

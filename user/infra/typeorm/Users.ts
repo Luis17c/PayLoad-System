@@ -1,8 +1,6 @@
-import {Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn, } from  'typeorm'
-import { transactions } from './transactions';
-
+import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, } from  'typeorm'
 @Entity()
-export class users{
+export class Users{
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

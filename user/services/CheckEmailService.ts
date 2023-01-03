@@ -1,4 +1,4 @@
-export class checkEmailService {
+export class CheckEmailService {
     constructor(){}
 
     use(email:string){

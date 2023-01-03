@@ -1,17 +1,17 @@
 import { hash } from "bcrypt";
-import { inject, injectable } from "tsyringe";
-import { isFunctionDeclaration } from "typescript";
-import { iCreateUserDTO } from "../dtos/iCreateUserDTO";
-import { usersRepository } from "../infra/typeorm/usersRepository";
-import { checkBirthService } from "./checkBirthService";
+import { injectable } from "tsyringe";
+
+import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
+import { IUserRepository } from "../interfaces/IUserRepository";
+import { CheckBirthService } from "./CheckBirthService";
 
 @injectable()
 export class createUserService {
     constructor(
-        private usersRepository: usersRepository,        
+        private usersRepository: IUserRepository,        
         ){}
 
-    public async use(data: iCreateUserDTO){
+    public async use(data: ICreateUserDTO){
         const emailExists = this.usersRepository.findUserByEmail(data.email)
 
         if (!emailExists) {
@@ -24,7 +24,7 @@ export class createUserService {
         const parsedBirth = new Date(data.birth)
         data.birth = parsedBirth
 
-        const checkBirth = new checkBirthService()
+        const checkBirth = new CheckBirthService()
 
         const birthIsValid = checkBirth.use(data.birth)
 
