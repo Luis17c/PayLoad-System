@@ -11,7 +11,7 @@ export class createTable1672258771022 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "varchar",
+                        type: "uuid",
                         isPrimary: true,
                         generationStrategy: "uuid",
                         default: "uuid_generate_v4()"
@@ -19,6 +19,18 @@ export class createTable1672258771022 implements MigrationInterface {
                     {
                         name: "email",
                         type: "varchar",
+                    },
+                    {
+                        name: "cpfOrCpnj",
+                        type: "varchar",
+                    },
+                    {
+                        name: "shopkeeper",
+                        type: "boolean",
+                    },
+                    {
+                        name: "balance",
+                        type: "decimal"
                     },
                     {
                         name: "password",

@@ -1,4 +1,5 @@
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, } from  'typeorm'
+import {Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn, } from  'typeorm'
+import { transactions } from './transactions';
 
 @Entity()
 export class users{
@@ -7,6 +8,15 @@ export class users{
 
     @Column('varchar')
     email: string;
+
+    @Column('varchar')
+    cpfOrCnpj: string
+    
+    @Column('boolean')
+    shopkeeper: boolean
+
+    @Column('decimal')
+    balance: number
 
     @Column('varchar')
     password: string;
