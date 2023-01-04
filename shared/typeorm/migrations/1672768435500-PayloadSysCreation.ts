@@ -30,6 +30,11 @@ export class PayloadSysCreation1672768435500 implements MigrationInterface {
                         name: "madeAt",
                         type: "date",
                         default: "now()"
+                    },
+                    {
+                        name: "revertedAt",
+                        type: "date",
+                        isNullable: true,
                     }
                 ]
             }) 

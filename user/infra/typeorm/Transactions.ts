@@ -19,4 +19,7 @@ export class Transactions{
 
     @CreateDateColumn()
     madeAt: Date
+
+    @Column('date')
+    revertedAt: Date
 }

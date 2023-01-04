@@ -2,14 +2,14 @@ import { hash } from "bcrypt";
 import { injectable } from "tsyringe";
 
 import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
-import { IUserRepository } from "../interfaces/IUserRepository";
+import { UsersRepository } from "../infra/typeorm/UsersRepository";
 import { CheckBirthService } from "./CheckBirthService";
 
 @injectable()
 export class createUserService {
     constructor(
-        private usersRepository: IUserRepository,        
-        ){}
+        private usersRepository: UsersRepository,        
+    ){}
 
     public async use(data: ICreateUserDTO){
         const emailExists = this.usersRepository.findUserByEmail(data.email)

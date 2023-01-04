@@ -5,7 +5,7 @@ import { createUserService } from "../../user/services/CreateUserService";
 
 export const userRoute = Router()
 
-userRoute.get("/", async (req, res)=>{
+userRoute.post("/", async (req, res)=>{
     var userData = req.body
 
     const checkEmail = new CheckEmailService()
