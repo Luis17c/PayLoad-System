@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { CheckEmailService } from "../../user/services/CheckEmailService";
-import { createUserService } from "../../user/services/CreateUserService";
+import { CheckEmailService } from "../../modules/services/CheckEmailService";
+import { createUserService } from "../../modules/services/CreateUserService";
 
 export const userRoute = Router()
 

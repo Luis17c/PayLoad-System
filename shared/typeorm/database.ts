@@ -1,7 +1,7 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { Transactions } from "../../user/infra/typeorm/Transactions"
-import { Users } from "../../user/infra/typeorm/Users"
+import { Transactions } from "../../modules/infra/typeorm/Transactions"
+import { Users } from "../../modules/infra/typeorm/Users"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
