@@ -1,27 +1,23 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 import { CheckEmailService } from "../../modules/services/CheckEmailService";
+import { CheckUniqueDataService } from "../../modules/services/CheckUniqueDataService";
 import { createUserService } from "../../modules/services/CreateUserService";
 
 export const userRoute = Router()
 
-userRoute.post("/", async (req, res)=>{
+userRoute.post("/create", async (req, res)=>{
     var userData = req.body
 
     const checkEmail = new CheckEmailService()
+    checkEmail.use(userData.email)
 
-    const emailIsValid = checkEmail.use(userData.email)
-
-    if(!emailIsValid){
-        throw new Error ("E-Mail is not valid")
-    }
+    const checkUniqueData = container.resolve(CheckUniqueDataService)
+    checkUniqueData.use(userData)
 
     try{
         const createUser = container.resolve(createUserService)
-
         const createdUser = await createUser.use(userData)
-
         res.send(createdUser)
-
     }catch(err){console.log(err)}
 })

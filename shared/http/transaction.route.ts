@@ -9,6 +9,7 @@ export const transactionRoute = Router()
 
 transactionRoute.post('/create', async (req, res)=>{
     const transactionData = req.body
+    
     const preAuthTransaction = container.resolve(PreAuthTransactionService)
     const makeTransaction = container.resolve(TransactionService)
 

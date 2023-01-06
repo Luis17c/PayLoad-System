@@ -8,5 +8,7 @@ export interface IUserRepository {
 
     findUserByEmail(email: string): Promise<Users | null>,
 
+    findUserByCpfOrCnpj(cpfOrCnpj:string): Promise<Users | null>
+
     findUserById(id: string): Promise<Users | null>
 }

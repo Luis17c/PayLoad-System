@@ -5,8 +5,8 @@ import { Users } from "../../modules/infra/typeorm/Users"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
-    port: 5433,
+    host: "172.18.0.3",
+    port: 5432,
     username: "postgres",
     password: "123",
     database: "postgres",

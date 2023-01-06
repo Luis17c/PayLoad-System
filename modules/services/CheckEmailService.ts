@@ -8,25 +8,23 @@ export class CheckEmailService {
             const secEmailArray = emailArray[1].split('.')
 
             if(emailArray[0].length < 3){
-                return false
+                throw new Error("This E-Mail is invalid")
             }
     
             if(secEmailArray[0].length < 3){
-                return false
+                throw new Error("This E-Mail is invalid")
             }
     
             if(secEmailArray.length == 1){
-                return false
+                throw new Error("This E-Mail is invalid")
             }
 
             if(secEmailArray[1].length < 2){
-                return false
+                throw new Error("This E-Mail is invalid")
             }
         }catch(err){
-            return false
+            throw new Error(err)
         }
-
-        return true
     }
 
 }
