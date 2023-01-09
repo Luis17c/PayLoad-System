@@ -15,9 +15,7 @@ userRoute.post("/create", async (req, res)=>{
     const checkUniqueData = container.resolve(CheckUniqueDataService)
     checkUniqueData.use(userData)
 
-    try{
-        const createUser = container.resolve(createUserService)
-        const createdUser = await createUser.use(userData)
-        res.send(createdUser)
-    }catch(err){console.log(err)}
+    const createUser = container.resolve(createUserService)
+    const createdUser = await createUser.use(userData)
+    res.send(createdUser)
 })
