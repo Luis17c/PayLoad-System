@@ -1,5 +1,6 @@
 import { injectable } from "tsyringe";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
+import AppError from "../errors/AppError";
 import { UsersRepository } from "../infra/typeorm/UsersRepository";
 
 @injectable()
@@ -13,15 +14,15 @@ export class PreAuthTransactionService{
         const receiver = await this.usersRepository.findUserByEmail(data.receiverEmail)
 
         if (payer.shopkeeper){
-            throw new Error("Shopkeepers cannot make transactions")
+            throw new AppError("Shopkeepers cannot make transactions")
         }
 
         if (payer.balance < data.value){
-            throw new Error("Balance isn't enought")
+            throw new AppError("Balance isn't enought")
         }
 
         if(!receiver){
-            throw new Error("User not found")
+            throw new AppError("User not found")
         }
 
         return true

@@ -1,4 +1,5 @@
 import { injectable } from "tsyringe";
+import AppError from "../errors/AppError";
 import { TransactionsRepository } from "../infra/typeorm/TransactionsRepository";
 import { UsersRepository } from "../infra/typeorm/UsersRepository";
 
@@ -15,7 +16,7 @@ export class RevertTransactionService{
         const receiver = transaction.receiverId
 
         if(transaction.revertedAt){
-            throw new Error("This transaction is already reverted")
+            throw new AppError("This transaction is already reverted")
         }
 
         payer.balance -= -transaction.value

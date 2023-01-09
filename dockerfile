@@ -1,6 +1,6 @@
 FROM node:alpine
 
-WORKDIR /src/app
+WORKDIR /src/payloadsys
 
 COPY package*.json ./
 RUN npm install

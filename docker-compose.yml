@@ -3,18 +3,20 @@ version: "3.9"
 services:
   postgres:
     image: "postgres"
-    container_name: "accs-pg"
+    container_name: "payload-pg"
     ports:
       - "5433:5432"
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "123"
       POSTGRES_DB: "postgres"
+      restart: always
 
-  app: 
+  payload-sys: 
     build: .
     command: npm start
     ports:
       - "3000:3000"
     volumes:
-      - .:/src/app
+      - .:/src/payloadsys
+    restart: always

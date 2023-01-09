@@ -1,7 +1,8 @@
 import "reflect-metadata"
-import Express from 'express'
+import Express, { NextFunction, Request, response, Response } from 'express'
 import cors from 'cors'
 import { mainRoute } from './http/main.route'
+import AppError from "../modules/errors/AppError"
 
 const app = Express()
 
@@ -13,3 +14,16 @@ app.listen(3000, ()=>{
 })
 
 app.use('/', mainRoute)
+app.use((err: Error, req:Request, res: Response, next: NextFunction)=>{
+    if (err instanceof AppError){
+        return res.status(err.statusCode).json({
+            status: "error",
+            message: err.message
+        })
+    }
+    
+    return res.status(500).json({
+        status: "error",
+        message: "Internal server error"
+    })
+})

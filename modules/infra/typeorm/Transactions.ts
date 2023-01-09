@@ -1,5 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { TypePredicateKind } from "typescript";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Users } from "./Users";
 
 @Entity()

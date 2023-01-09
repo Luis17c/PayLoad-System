@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Router } from "express";
 import { container } from "tsyringe";
+import { extAuth } from "../../config/extAuth";
+import AppError from "../../modules/errors/AppError";
 import { PreAuthTransactionService } from "../../modules/services/PreAuthTransactionService";
 import { RevertTransactionService } from "../../modules/services/RevertTransactionService";
 import { TransactionService } from "../../modules/services/TransactionService";
@@ -15,10 +17,10 @@ transactionRoute.post('/create', async (req, res)=>{
 
     const preAuth = await preAuthTransaction.use(transactionData)
     if(!preAuth){
-        throw new Error("Transaction isn't pre authorized")
+        throw new AppError("Transaction isn't pre authorized", )
     }
 
-    const auth = await (await axios.get("https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6")).data.message
+    const auth = await (await axios.get(extAuth)).data.message
     if(auth != 'Autorizado'){
         throw new Error("Transaction have been not authorized by external service")
     }
