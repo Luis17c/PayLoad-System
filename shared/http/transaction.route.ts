@@ -17,26 +17,22 @@ transactionRoute.post('/create', async (req, res)=>{
 
     const preAuth = await preAuthTransaction.use(transactionData)
     if(!preAuth){
-        throw new AppError("Transaction isn't pre authorized", )
+        throw new AppError("Transaction isn't pre authorized", 401)
     }
 
     const auth = await (await axios.get(extAuth)).data.message
     if(auth != 'Autorizado'){
-        throw new Error("Transaction have been not authorized by external service")
+        throw new AppError("Transaction have been not authorized by external service", 401)
     }
 
-    try{
-        const transaction = await makeTransaction.use(transactionData)
-        res.send(transaction)
-    }catch(err){console.log(err)}
+    const transaction = await makeTransaction.use(transactionData)
+    res.send(transaction)
 })
 
 transactionRoute.put('/revert', async (req, res)=>{
     const transactionData = req.body
     const revertTransaction = container.resolve(RevertTransactionService)
 
-    try{
-        const transaction = await revertTransaction.use(transactionData.id)
-        res.send(transaction)
-    }catch(err){console.log(err)}
+    const transaction = await revertTransaction.use(transactionData.id)
+    res.send(transaction)
 })
