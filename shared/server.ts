@@ -5,7 +5,7 @@ import "express-async-errors"
 import cors from 'cors'
 
 import { mainRoute } from './http/main.route'
-import { errorHandler } from "../modules/errors/errorHandler"
+import { errorHandler } from "./errors/errorHandler"
 
 const app = Express()
 

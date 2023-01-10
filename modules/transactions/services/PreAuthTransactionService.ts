@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
-import AppError from "../errors/AppError";
-import { UsersRepository } from "../infra/typeorm/UsersRepository";
+import AppError from "../../../shared/errors/AppError";
+import { UsersRepository } from "../../users/infra/typeorm/UsersRepository";
 
 @injectable()
 export class PreAuthTransactionService{

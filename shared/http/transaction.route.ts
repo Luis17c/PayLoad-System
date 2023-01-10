@@ -2,10 +2,10 @@ import axios from "axios";
 import { Router } from "express";
 import { container } from "tsyringe";
 import { extAuth } from "../../config/extAuth";
-import AppError from "../../modules/errors/AppError";
-import { PreAuthTransactionService } from "../../modules/services/PreAuthTransactionService";
-import { RevertTransactionService } from "../../modules/services/RevertTransactionService";
-import { TransactionService } from "../../modules/services/TransactionService";
+import AppError from "../errors/AppError";
+import { PreAuthTransactionService } from "../../modules/transactions/services/PreAuthTransactionService";
+import { RevertTransactionService } from "../../modules/transactions/services/RevertTransactionService";
+import { TransactionService } from "../../modules/transactions/services/TransactionService";
 
 export const transactionRoute = Router()
 

@@ -1,4 +1,4 @@
-import { Users } from "../infra/typeorm/Users";
+import { Users } from "../../users/infra/typeorm/Users";
 
 export interface ICreateTransactionDTO{
     value: number,

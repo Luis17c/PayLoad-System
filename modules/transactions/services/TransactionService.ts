@@ -2,7 +2,7 @@ import { injectable } from "tsyringe";
 import { ICreateTransactionDTO } from "../dtos/ICreateTransactionDTO";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
 import { TransactionsRepository } from "../infra/typeorm/TransactionsRepository";
-import { UsersRepository } from "../infra/typeorm/UsersRepository";
+import { UsersRepository } from "../../users/infra/typeorm/UsersRepository";
 
 @injectable()
 export class TransactionService{

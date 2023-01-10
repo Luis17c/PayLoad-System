@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
-import AppError from "../errors/AppError";
+import AppError from "../../../shared/errors/AppError";
 import { TransactionsRepository } from "../infra/typeorm/TransactionsRepository";
-import { UsersRepository } from "../infra/typeorm/UsersRepository";
+import { UsersRepository } from "../../users/infra/typeorm/UsersRepository";
 
 @injectable()
 export class RevertTransactionService{

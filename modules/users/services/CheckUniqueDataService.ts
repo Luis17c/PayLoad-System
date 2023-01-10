@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
 import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
-import AppError from "../errors/AppError";
+import AppError from "../../../shared/errors/AppError";
 import { UsersRepository } from "../infra/typeorm/UsersRepository";
 
 @injectable()
