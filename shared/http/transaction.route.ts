@@ -6,8 +6,12 @@ import AppError from "../errors/AppError";
 import { PreAuthTransactionService } from "../../modules/transactions/services/PreAuthTransactionService";
 import { RevertTransactionService } from "../../modules/transactions/services/RevertTransactionService";
 import { TransactionService } from "../../modules/transactions/services/TransactionService";
+import EnsureAuthMiddle from "../../modules/sessions/EnsureAuthMiddle";
 
 export const transactionRoute = Router()
+
+const ensureAuthMiddle = container.resolve(EnsureAuthMiddle)
+transactionRoute.use(ensureAuthMiddle.use)
 
 transactionRoute.post('/create', async (req, res)=>{
     const transactionData = req.body

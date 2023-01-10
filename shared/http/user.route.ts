@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { container } from "tsyringe";
+
 import { CheckEmailService } from "../../modules/users/services/CheckEmailService";
 import { CheckUniqueDataService } from "../../modules/users/services/CheckUniqueDataService";
 import { createUserService } from "../../modules/users/services/CreateUserService";
 
 export const userRoute = Router()
+
 
 userRoute.post("/create", async (req, res)=>{
     var userData = req.body
