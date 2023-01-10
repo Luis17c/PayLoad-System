@@ -1,10 +1,10 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../shared/typeorm/database";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { IUserRepository } from "../../interfaces/IUserRepository";
+import { IUsersRepository } from "../../interfaces/IUsersRepository";
 import { Users } from "./Users";
 
-export class UsersRepository implements IUserRepository{
+export class UsersRepository implements IUsersRepository{
     private ormRepository: Repository<Users>
     constructor(){
         this.ormRepository = AppDataSource.getRepository('users')

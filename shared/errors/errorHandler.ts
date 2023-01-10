@@ -5,6 +5,6 @@ export const errorHandler = function (err: Error, req: Request, res: Response, n
     if (err instanceof AppError){
         res.status(err.statusCode).send(err.message)
     }else{
-        res.status(500).send("Internal server error")
+        console.log(err)
     }
 }  

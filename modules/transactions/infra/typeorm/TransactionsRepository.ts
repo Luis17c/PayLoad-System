@@ -1,11 +1,10 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../shared/typeorm/database";
 import { ICreateTransactionDTO } from "../../dtos/ICreateTransactionDTO";
-import { ITransactionDTO } from "../../dtos/ITransactionDTO";
-import { ITransactionRepository } from "../../interfaces/ITransactionRepository";
+import { ITransactionsRepository } from "../../interfaces/ITransactionsRepository";
 import { Transactions } from "./Transactions";
 
-export class TransactionsRepository implements ITransactionRepository{
+export class TransactionsRepository implements ITransactionsRepository{
     private ormRepository: Repository<Transactions>
     constructor(){
         this.ormRepository = AppDataSource.getRepository('transactions')

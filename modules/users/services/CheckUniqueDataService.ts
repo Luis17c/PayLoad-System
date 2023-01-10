@@ -1,15 +1,15 @@
-import { injectable } from "tsyringe";
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
+import { inject, injectable } from "tsyringe";
 import AppError from "../../../shared/errors/AppError";
-import { UsersRepository } from "../infra/typeorm/UsersRepository";
+import { IUsersRepository } from "../interfaces/IUsersRepository";
 
 @injectable()
 export class CheckUniqueDataService{
     constructor(
-        private userRepository: UsersRepository
+        @inject("UsersRepository")
+        private userRepository: IUsersRepository
     ){}
 
-    public async use(email, cpfOrCnpj){
+    public async use(email:string, cpfOrCnpj:number){
         const emailExists = await this.userRepository.findUserByEmail(email)
         if(emailExists){
             throw new AppError("This e-mail is already in use")

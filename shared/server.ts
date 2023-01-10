@@ -4,6 +4,8 @@ import Express from 'express'
 import "express-async-errors"
 import cors from 'cors'
 
+import "./container"
+
 import { mainRoute } from './http/main.route'
 import { errorHandler } from "./errors/errorHandler"
 

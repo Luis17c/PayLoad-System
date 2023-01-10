@@ -1,8 +1,16 @@
 import { container } from "tsyringe";
-import { IUserRepository } from "../../modules/users/interfaces/IUserRepository";
-import { UsersRepository } from "../../modules/users/infra/typeorm/UsersRepository";
 
-container.registerSingleton<IUserRepository>(
-    'usersRepository',
+import { IUsersRepository } from "../../modules/users/interfaces/IUsersRepository";
+import { UsersRepository } from "../../modules/users/infra/typeorm/UsersRepository";
+import { ITransactionsRepository } from "../../modules/transactions/interfaces/ITransactionsRepository";
+import { TransactionsRepository } from "../../modules/transactions/infra/typeorm/TransactionsRepository";
+
+container.registerSingleton<IUsersRepository>(
+    'UsersRepository',
     UsersRepository
+)
+
+container.registerSingleton<ITransactionsRepository>(
+    'TransactionsRepository',
+    TransactionsRepository
 )

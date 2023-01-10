@@ -1,14 +1,16 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { ICreateTransactionDTO } from "../dtos/ICreateTransactionDTO";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
-import { TransactionsRepository } from "../infra/typeorm/TransactionsRepository";
-import { UsersRepository } from "../../users/infra/typeorm/UsersRepository";
+import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
+import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
 
 @injectable()
 export class TransactionService{
     constructor(
-        private userRepository: UsersRepository,
-        private transactionRepository: TransactionsRepository
+        @inject("UsersRepository")
+        private userRepository: IUsersRepository,
+        @inject("TransactionsRepository")
+        private transactionsRepository: ITransactionsRepository
     ){}
 
     public async use(transactionData: ITransactionDTO){
@@ -27,7 +29,7 @@ export class TransactionService{
             receiverId: receiver,
         }
 
-        const transaction = await this.transactionRepository.createTransaction(x)
+        const transaction = await this.transactionsRepository.createTransaction(x)
         
         return transaction
     }

@@ -1,12 +1,14 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
+
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
 import AppError from "../../../shared/errors/AppError";
-import { UsersRepository } from "../../users/infra/typeorm/UsersRepository";
+import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 
 @injectable()
 export class PreAuthTransactionService{
     constructor(
-        private usersRepository: UsersRepository,
+        @inject("UsersRepository")
+        private usersRepository: IUsersRepository,
     ){}
 
     public async use(data: ITransactionDTO){

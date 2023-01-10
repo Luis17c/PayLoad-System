@@ -1,7 +1,7 @@
 import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
 import { Users } from "../infra/typeorm/Users";
 
-export interface IUserRepository {
+export interface IUsersRepository {
     createUser(data: ICreateUserDTO): Promise<Users>,
 
     save(data:Users): Promise<null>,

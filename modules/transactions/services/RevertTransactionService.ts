@@ -1,17 +1,21 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import AppError from "../../../shared/errors/AppError";
-import { TransactionsRepository } from "../infra/typeorm/TransactionsRepository";
-import { UsersRepository } from "../../users/infra/typeorm/UsersRepository";
+import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
+import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
+
+
 
 @injectable()
 export class RevertTransactionService{
     constructor(
-        private userRepository: UsersRepository,
-        private transactionRepository: TransactionsRepository
+        @inject("UsersRepository")
+        private usersRepository: IUsersRepository,
+        @inject("TransactionsRepository")
+        private transactionsRepository: ITransactionsRepository
     ){}
 
     public async use(transactionId:string){
-        const transaction = await this.transactionRepository.findTransactionById(transactionId)
+        const transaction = await this.transactionsRepository.findTransactionById(transactionId)
         const payer = transaction.payerId
         const receiver = transaction.receiverId
 
@@ -24,9 +28,9 @@ export class RevertTransactionService{
 
         transaction.revertedAt = new Date()
         
-        await this.transactionRepository.save(transaction)
-        await this.userRepository.save(payer)
-        await this.userRepository.save(receiver)
+        await this.transactionsRepository.save(transaction)
+        await this.usersRepository.save(payer)
+        await this.usersRepository.save(receiver)
 
         return transaction
     }
