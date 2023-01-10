@@ -13,7 +13,7 @@ userRoute.post("/create", async (req, res)=>{
     checkEmail.use(userData.email)
 
     const checkUniqueData = container.resolve(CheckUniqueDataService)
-    checkUniqueData.use(userData)
+    await checkUniqueData.use(userData.email, userData.cpfOrCnpj)
 
     const createUser = container.resolve(createUserService)
     const createdUser = await createUser.use(userData)

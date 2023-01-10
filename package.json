@@ -1,14 +1,15 @@
 {
-   "name": "AccountSys",
+   "name": "payload-sys",
    "version": "1.0.0",
-   "description": "Creating a account system for practice and learning",
+   "description": "Creating a payload system for practice and learning",
    "main": "index.js",
    "author": "Luis Claudio Prado",
    "license": "MIT",
    "scripts": {
       "start": "ts-node-dev shared/server.ts",
       "test": "jest",
-      "typeorm": "typeorm-ts-node-commonjs migration:run -d shared/typeorm/database.ts"
+      "typeorm-run": "typeorm-ts-node-commonjs migration:run -d shared/typeorm/database.ts",
+      "typeorm-revert": "typeorm-ts-node-commonjs migration:revert -d shared/typeorm/database.ts"
    },
    "dependencies": {
       "@types/bcrypt": "^5.0.0",

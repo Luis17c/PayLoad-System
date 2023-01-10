@@ -23,16 +23,16 @@ export class UsersRepository implements IUserRepository{
         return
     }
 
-    public async findUserByEmail(userEmail: string): Promise<Users> {
+    public async findUserByEmail(userEmail: string): Promise<Users | null> {
         const user = await this.ormRepository.findOne({
             where: { email: userEmail }
         })
         return user
     }
 
-    public async findUserByCpfOrCnpj(data: string): Promise<Users> {
+    public async findUserByCpfOrCnpj(cpfOrCnpj: number): Promise<Users | null> {
         const user = await this.ormRepository.findOne({
-            where: { cpfOrCnpj : data }
+            where: { cpfOrCnpj }
         })
         return user
     }

@@ -9,15 +9,15 @@ export class CheckUniqueDataService{
         private userRepository: UsersRepository
     ){}
 
-    public async use(data: ICreateUserDTO){
-        const emailExists = await this.userRepository.findUserByEmail(data.email)
+    public async use(email, cpfOrCnpj){
+        const emailExists = await this.userRepository.findUserByEmail(email)
         if(emailExists){
             throw new AppError("This e-mail is already in use")
         }
 
-        const cpfOrCnpjExists = await this.userRepository.findUserByCpfOrCnpj(data.cpfOrCpnj)
+        const cpfOrCnpjExists = await this.userRepository.findUserByCpfOrCnpj(cpfOrCnpj)
         if(cpfOrCnpjExists){
-            throw new AppError("This Cpf or Cnpj is already in use")
+            throw new AppError("This Cpf or Cnpj is already in use", 400)
         }
     }
 }

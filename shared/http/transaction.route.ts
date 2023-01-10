@@ -25,18 +25,16 @@ transactionRoute.post('/create', async (req, res)=>{
         throw new Error("Transaction have been not authorized by external service")
     }
 
-    try{
+
         const transaction = await makeTransaction.use(transactionData)
         res.send(transaction)
-    }catch(err){console.log(err)}
+
 })
 
 transactionRoute.put('/revert', async (req, res)=>{
     const transactionData = req.body
     const revertTransaction = container.resolve(RevertTransactionService)
 
-    try{
         const transaction = await revertTransaction.use(transactionData.id)
         res.send(transaction)
-    }catch(err){console.log(err)}
 })

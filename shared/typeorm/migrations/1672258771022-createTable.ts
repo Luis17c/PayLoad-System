@@ -22,7 +22,7 @@ export class createTable1672258771022 implements MigrationInterface {
                     },
                     {
                         name: "cpfOrCpnj",
-                        type: "varchar",
+                        type: "integer",
                     },
                     {
                         name: "shopkeeper",
