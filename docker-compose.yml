@@ -8,15 +8,26 @@ services:
       - "5433:5432"
     environment:
       POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "123"
+      POSTGRES_PASSWORD: "password"
       POSTGRES_DB: "postgres"
-      restart: always
+    restart: always
+    volumes:
+      - pgdata:/data/postgres
 
   payload-sys: 
     build: .
+    container_name: "payload-app"
     command: npm start
     ports:
       - "3000:3000"
     volumes:
       - .:/src/payloadsys
     restart: always
+    links: 
+      - postgres
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
+    driver: local

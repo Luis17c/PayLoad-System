@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 import { AuthenticateUserService } from "../../modules/sessions/AuthenticateUserService";
-import EnsureAuthMiddle from "../../modules/sessions/EnsureAuthMiddle";
 
 export const sessionRoute = Router()
 

@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { container } from "tsyringe";
+import { CheckAndFormatCpfOrCnpjService } from "../../modules/users/services/CheckCpfOrCnpjService";
 
 import { CheckEmailService } from "../../modules/users/services/CheckEmailService";
 import { CheckUniqueDataService } from "../../modules/users/services/CheckUniqueDataService";
 import { createUserService } from "../../modules/users/services/CreateUserService";
 
 export const userRoute = Router()
-
 
 userRoute.post("/create", async (req, res)=>{
     var userData = req.body
@@ -16,6 +16,10 @@ userRoute.post("/create", async (req, res)=>{
 
     const checkUniqueData = container.resolve(CheckUniqueDataService)
     await checkUniqueData.use(userData.email, userData.cpfOrCnpj)
+
+    const checkAndFormatCpfOrCnpj = new CheckAndFormatCpfOrCnpjService()
+    const checkedCpfOrCnpj = await checkAndFormatCpfOrCnpj.use(userData.cpfOrCnpj)
+    userData.cpfOrCnpj = checkedCpfOrCnpj
 
     const createUser = container.resolve(createUserService)
     const createdUser = await createUser.use(userData)
