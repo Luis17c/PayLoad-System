@@ -7,8 +7,8 @@ export class Users{
     @Column('varchar')
     email: string;
 
-    @Column('integer')
-    cpfOrCnpj: number
+    @Column('varchar')
+    cpfOrCnpj: string
     
     @Column('boolean')
     shopkeeper: boolean

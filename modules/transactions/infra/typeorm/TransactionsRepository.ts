@@ -31,4 +31,15 @@ export class TransactionsRepository implements ITransactionsRepository{
         await this.ormRepository.save(transaction)
         return
     }
+
+    public async listAllTransactions(): Promise<Transactions[]> {
+        const transactions = await this.ormRepository.find()
+        return transactions
+    }
+
+    public async removeTransaction(id:string): Promise<null> {
+        const transaction = await this.findTransactionById(id)
+        await this.ormRepository.remove(transaction)
+        return
+    }
 }

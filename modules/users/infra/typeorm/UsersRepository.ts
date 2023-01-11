@@ -1,4 +1,5 @@
 import { Repository } from "typeorm";
+import { userRoute } from "../../../../shared/http/user.route";
 import { AppDataSource } from "../../../../shared/typeorm/database";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../../interfaces/IUsersRepository";
@@ -30,7 +31,7 @@ export class UsersRepository implements IUsersRepository{
         return user
     }
 
-    public async findUserByCpfOrCnpj(cpfOrCnpj: number): Promise<Users | null> {
+    public async findUserByCpfOrCnpj(cpfOrCnpj: string): Promise<Users | null> {
         const user = await this.ormRepository.findOne({
             where: { cpfOrCnpj }
         })
@@ -42,5 +43,16 @@ export class UsersRepository implements IUsersRepository{
             where: { id }
         })
         return user
+    }
+
+    public async listAllUsers(): Promise<Users[]> {
+        const users = await this.ormRepository.find()
+        return users
+    }
+
+    public async deleteUser(id: string): Promise<null> {
+        const user = await this.findUserById(id)
+        await this.ormRepository.remove(user)
+        return 
     }
 }
