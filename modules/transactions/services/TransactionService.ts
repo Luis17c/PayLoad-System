@@ -3,6 +3,9 @@ import { ICreateTransactionDTO } from "../dtos/ICreateTransactionDTO";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
 import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
+import { SendMailService } from "../../../shared/nodemailer/SendMailService";
+import { send } from "process";
+import { ISendMailDTO } from "../../../shared/nodemailer/ISendMailDTO";
 
 @injectable()
 export class TransactionService{
@@ -30,6 +33,15 @@ export class TransactionService{
         }
 
         const transaction = await this.transactionsRepository.createTransaction(x)
+
+        const mailData: ISendMailDTO = {
+            to: [payer.email, receiver.email],
+            subject: "Successful transaction",
+            text: `Transaction value of ${transaction.value}, from ${payer.name} to ${receiver.name}`
+        }
+
+        const sendMail = new SendMailService()
+        sendMail.use(mailData)
         
         return transaction
     }
