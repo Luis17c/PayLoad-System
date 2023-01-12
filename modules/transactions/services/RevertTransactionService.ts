@@ -3,8 +3,6 @@ import AppError from "../../../shared/errors/AppError";
 import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
 
-
-
 @injectable()
 export class RevertTransactionService{
     constructor(

@@ -1,5 +1,7 @@
 import { Repository } from "typeorm";
+
 import { AppDataSource } from "../../../../shared/typeorm/database";
+
 import { ICreateTransactionDTO } from "../../dtos/ICreateTransactionDTO";
 import { ITransactionsRepository } from "../../interfaces/ITransactionsRepository";
 import { Transactions } from "./Transactions";
@@ -23,23 +25,20 @@ export class TransactionsRepository implements ITransactionsRepository{
         const transaction = await this.ormRepository.findOne({
             where: { id: transactionId}
         })
-
         return transaction
     }
 
-    public async save(transaction: Transactions): Promise<null> {
+    public async save(transaction: Transactions): Promise<void> {
         await this.ormRepository.save(transaction)
-        return
     }
 
-    public async listAllTransactions(): Promise<Transactions[]> {
-        const transactions = await this.ormRepository.find()
-        return transactions
+    public async listAll(): Promise<Transactions[]> {
+        const trans = await this.ormRepository.find()
+        return trans
     }
 
-    public async removeTransaction(id:string): Promise<null> {
+    public async removeTransaction(id:string): Promise<void> {
         const transaction = await this.findTransactionById(id)
         await this.ormRepository.remove(transaction)
-        return
     }
 }

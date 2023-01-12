@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { userRoute } from "../../../../shared/http/user.route";
+
 import { AppDataSource } from "../../../../shared/typeorm/database";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../../interfaces/IUsersRepository";
@@ -46,8 +46,7 @@ export class UsersRepository implements IUsersRepository{
     }
 
     public async listAllUsers(): Promise<Users[]> {
-        const users = await this.ormRepository.find()
-        return users
+        return await this.ormRepository.find()
     }
 
     public async deleteUser(id: string): Promise<null> {
