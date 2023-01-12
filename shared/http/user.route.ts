@@ -7,8 +7,11 @@ export const userRoute = Router()
 
 const userControler = container.resolve(UserController)
 
-userRoute.post("/create", userControler.create)
+userRoute.post("/create", async (req, res) => {
+    await userControler.create(req,res)})
 
-userRoute.get("/list", userControler.list)
+userRoute.get("/list", async (req, res) => {
+    await userControler.list(req, res)})
 
-userRoute.put("/remove", userControler.remove)
+userRoute.put("/remove", async (req, res) => {
+    await userControler.remove(req, res)})
