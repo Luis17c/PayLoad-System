@@ -2,8 +2,12 @@ import { container } from "tsyringe";
 
 import { IUsersRepository } from "../../modules/users/interfaces/IUsersRepository";
 import { UsersRepository } from "../../modules/users/infra/typeorm/UsersRepository";
+
 import { ITransactionsRepository } from "../../modules/transactions/interfaces/ITransactionsRepository";
 import { TransactionsRepository } from "../../modules/transactions/infra/typeorm/TransactionsRepository";
+
+import { ICacheRepository } from "../../modules/caching/ICacheRepository";
+import { CacheRepository } from "../../modules/caching/redis/CacheRepository";
 
 container.registerSingleton<IUsersRepository>(
     'UsersRepository',
@@ -13,4 +17,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ITransactionsRepository>(
     'TransactionsRepository',
     TransactionsRepository
+)
+
+container.registerSingleton<ICacheRepository>(
+    'CacheRepository',
+    CacheRepository
 )

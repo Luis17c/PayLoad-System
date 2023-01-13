@@ -9,3 +9,4 @@ jest.config.ts/
 tsconfig.json/
 yarn-error.log/
 yarn.lock/
+.env/

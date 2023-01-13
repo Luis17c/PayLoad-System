@@ -8,12 +8,14 @@ import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../users/interfaces/IUsersRepository";
 import { UsersRepository } from "../users/infra/typeorm/UsersRepository";
 
-
+@injectable()
 export default class EnsureAuthMiddle{
-    constructor(){}
+    constructor(
+        @inject('UsersRepository')
+        private usersRepository: IUsersRepository
+    ){}
 
     public async use(req:Request, res:Response, next:NextFunction){
-        const usersRepository = new UsersRepository()
         const authHeader = req.headers.authorization
 
         if (!authHeader){
@@ -25,7 +27,7 @@ export default class EnsureAuthMiddle{
         try{
             const { sub } = verify(token, jwtConfig.key) as ITokenData
 
-            const user = await usersRepository.findUserById(sub)
+            const user = await this.usersRepository.findUserById(sub)
 
             if (!user){
                throw new AppError("User doesn't exist")

@@ -23,7 +23,6 @@ export class UserController{
 
         const checkAndFormatCpfOrCnpj = new CheckAndFormatCpfOrCnpjService()
         const checkedCpfOrCnpj = await checkAndFormatCpfOrCnpj.use(userData.cpfOrCnpj)
-        console.log(checkedCpfOrCnpj)
         userData.cpfOrCnpj = checkedCpfOrCnpj
 
         const checkUniqueData = container.resolve(CheckUniqueDataService)

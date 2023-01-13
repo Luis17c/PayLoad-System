@@ -1,8 +1,11 @@
 import axios from "axios";
 import { Request, Response } from "express";
+import { json } from "stream/consumers";
 import { container, inject, injectable } from "tsyringe";
 import { extAuth } from "../../config/extAuth";
 import AppError from "../../shared/errors/AppError";
+import { ICacheRepository } from "../caching/ICacheRepository";
+import GetIdByJwtToken from "../sessions/GetIdByJwtToken";
 import { ITransactionsRepository } from "../transactions/interfaces/ITransactionsRepository";
 import { PreAuthTransactionService } from "../transactions/services/PreAuthTransactionService";
 import { RevertTransactionService } from "../transactions/services/RevertTransactionService";
@@ -12,12 +15,15 @@ import { TransactionService } from "../transactions/services/TransactionService"
 export class TransactionController{
     constructor(
         @inject("TransactionsRepository")
-        private transactionsRepository: ITransactionsRepository
+        private transactionsRepository: ITransactionsRepository,
+
+        @inject("CacheRepository")
+        private cacheRepository: ICacheRepository
     ){}
 
     public async create(req: Request, res: Response){
         const transactionData = req.body
-    
+        
         const preAuthTransaction = container.resolve(PreAuthTransactionService)
         const makeTransaction = container.resolve(TransactionService)
     
@@ -32,11 +38,23 @@ export class TransactionController{
         }
 
         const transaction = await makeTransaction.use(transactionData)
+
+        await this.cacheRepository.invalidate('transactions')
         res.send(transaction)
     }
 
     public async list(req: Request, res: Response){
-        const transactions = await this.transactionsRepository.listAll()
+        const getIdByJwtToken = new GetIdByJwtToken()
+        const userId = await getIdByJwtToken.use(req.headers.authorization) 
+        const transactions = await this.cacheRepository.get(`transactions:${userId}`)
+        console.log("hello world")
+
+        if(!transactions){
+            const transactions = await this.transactionsRepository.listAll()
+            await this.cacheRepository.save(`transactions:${userId}`, JSON.stringify(transactions))
+            res.send(transactions)
+        }
+
         res.send(transactions)
     }
 
@@ -45,6 +63,8 @@ export class TransactionController{
         const revertTransaction = container.resolve(RevertTransactionService)
 
         const transaction = await revertTransaction.use(transactionData.id)
+
+        await this.cacheRepository.invalidate('transactions')
         res.send(transaction)
     }
 
