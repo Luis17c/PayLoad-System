@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../shared/typeorm/database";
+import { AppDataSource } from "../../../../shared/infra/typeorm/database";
 
 import { ICreateTransactionDTO } from "../../dtos/ICreateTransactionDTO";
 import { ITransactionsRepository } from "../../interfaces/ITransactionsRepository";

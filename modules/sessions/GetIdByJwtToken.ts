@@ -1,6 +1,6 @@
 import { verify } from "jsonwebtoken"
 import { jwtConfig } from "../../config/jwtConfig"
-import { ITokenData } from "./ITokenData"
+import { ITokenData } from "./interfaces/ITokenData"
 
 export default class GetIdByJwtToken{
     constructor(){}

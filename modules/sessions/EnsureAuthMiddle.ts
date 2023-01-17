@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { jwtConfig } from "../../config/jwtConfig";
 import AppError from "../../shared/errors/AppError";
-import { ITokenData } from "./ITokenData";
+import { ITokenData } from "./interfaces/ITokenData";
 import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../users/interfaces/IUsersRepository";
 import { UsersRepository } from "../users/infra/typeorm/UsersRepository";

@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
+
 import { ICreateTransactionDTO } from "../dtos/ICreateTransactionDTO";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
 import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
-import { SendMailService } from "../../../shared/nodemailer/SendMailService";
-import { send } from "process";
-import { ISendMailDTO } from "../../../shared/nodemailer/ISendMailDTO";
+import { SendMailService } from "../../../shared/infra/nodemailer/SendMailService";
+import { ISendMailDTO } from "../../../shared/infra/nodemailer/ISendMailDTO";
 
 @injectable()
 export class TransactionService{

@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import AppError from '../errors/AppError'
+import AppError from '../../errors/AppError'
 import { ISendMailDTO } from './ISendMailDTO'
 
 export class SendMailService{

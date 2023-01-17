@@ -12,12 +12,12 @@ export class CheckUniqueDataService{
     public async use(email:string, cpfOrCnpj:string){
         const emailExists = await this.userRepository.findUserByEmail(email)
         if(emailExists){
-            throw new AppError("This e-mail is already in use")
+            return false
         }
-
         const cpfOrCnpjExists = await this.userRepository.findUserByCpfOrCnpj(cpfOrCnpj)
         if(cpfOrCnpjExists){
-            throw new AppError("This Cpf or Cnpj is already in use", 400)
+            return false
         }
+        return true
     }
 }

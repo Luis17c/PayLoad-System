@@ -1,12 +1,11 @@
 import { CheckEmailService } from "../CheckEmailService"
 
+const checkEmail = new CheckEmailService
 describe("Check if email is valid", ()=>{
     it('should check if this is a valid email', ()=>{
-        const checkEmail = new CheckEmailService
-        expect(checkEmail.use("luisclaudio.praado@gmail.com")).toBe(true)
+        expect(checkEmail.use("luisclaudio.prado@gmail.com")).toBe(true)
         })
-    it('should test all invalid email shapes', ()=>{
-        const checkEmail = new CheckEmailService
+    it('should return false', ()=>{
         expect(checkEmail.use("luisclaudiopraadogmail.com")).toBe(false)
         expect(checkEmail.use("luisclaudio.praado@gmailcom")).toBe(false)
         expect(checkEmail.use("lu@gmail.com")).toBe(false)

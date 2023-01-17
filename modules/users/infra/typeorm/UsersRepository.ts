@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../shared/typeorm/database";
+import { AppDataSource } from "../../../../shared/infra/typeorm/database";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../../interfaces/IUsersRepository";
 import { Users } from "./Users";
@@ -19,9 +19,8 @@ export class UsersRepository implements IUsersRepository{
         return user
     }
 
-    public async save(data: Users): Promise<null> {
+    public async save(data: Users): Promise<void> {
         await this.ormRepository.save(data)
-        return
     }
 
     public async findUserByEmail(userEmail: string): Promise<Users | null> {
@@ -49,9 +48,8 @@ export class UsersRepository implements IUsersRepository{
         return await this.ormRepository.find()
     }
 
-    public async deleteUser(id: string): Promise<null> {
+    public async deleteUser(id: string): Promise<void> {
         const user = await this.findUserById(id)
         await this.ormRepository.remove(user)
-        return 
     }
 }

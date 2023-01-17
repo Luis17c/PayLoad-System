@@ -1,10 +1,10 @@
 import axios from "axios";
 import { Request, Response } from "express";
-import { json } from "stream/consumers";
 import { container, inject, injectable } from "tsyringe";
 import { extAuth } from "../../config/extAuth";
 import AppError from "../../shared/errors/AppError";
-import { ICacheRepository } from "../caching/ICacheRepository";
+import { IBcryptProvider } from "../../shared/infra/bcrypt/IBcryptProvider";
+import { ICacheRepository } from "../caching/interfaces/ICacheRepository";
 import GetIdByJwtToken from "../sessions/GetIdByJwtToken";
 import { ITransactionsRepository } from "../transactions/interfaces/ITransactionsRepository";
 import { PreAuthTransactionService } from "../transactions/services/PreAuthTransactionService";
@@ -18,7 +18,7 @@ export class TransactionController{
         private transactionsRepository: ITransactionsRepository,
 
         @inject("CacheRepository")
-        private cacheRepository: ICacheRepository
+        private cacheRepository: ICacheRepository,
     ){}
 
     public async create(req: Request, res: Response){

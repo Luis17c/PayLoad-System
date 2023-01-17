@@ -28,7 +28,15 @@ export default {
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "/infra/container/"
+    "/infra/container/",
+    "/dtos/",
+    "/interfaces/*",
+    "users/infra/typeorm/Users.ts",
+    "transactions/infra/typeorm/*",
+    "users/services/tests/fakes/*",
+    "users/infra/typeorm/*",
+    "transactions/infra/typeorm/*.ts",
+    "caching/redis/*"
   ],
 
   // Indicates which provider should be used to instrument code for coverage

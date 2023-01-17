@@ -1,27 +1,27 @@
-import AppError from "../../../shared/errors/AppError"
-
 export class CheckEmailService {
     constructor(){}
 
-    use(email:string){
+    public use(email:string){
+        try{
             const emailArray = email.split('@')
             const secEmailArray = emailArray[1].split('.')
 
             if(emailArray[0].length < 3){
-                throw new AppError("This E-Mail is invalid")
+                return false
             }
     
             if(secEmailArray[0].length < 3){
-                throw new AppError("This E-Mail is invalid")
+                return false
             }
     
             if(secEmailArray.length == 1){
-                throw new AppError("This E-Mail is invalid")
+                return false            
             }
 
             if(secEmailArray[1].length < 2){
-                throw new AppError("This E-Mail is invalid")
+                return false            
             }
+            return true
+        }catch(err){return false}
     }
-
 }

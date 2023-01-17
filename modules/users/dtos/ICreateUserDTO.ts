@@ -1,9 +1,9 @@
 export interface ICreateUserDTO{
     email: string,
-    cpfOrCpnj: number,
+    cpfOrCpnj: string,
     password: string,
     name: string,
-    birth: string | Date,
+    birth: Date,
     shopkeeper: boolean,
     balance: number
 }

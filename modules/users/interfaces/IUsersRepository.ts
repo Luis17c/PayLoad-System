@@ -4,7 +4,7 @@ import { Users } from "../infra/typeorm/Users";
 export interface IUsersRepository {
     createUser(data: ICreateUserDTO): Promise<Users>,
 
-    save(data:Users): Promise<null>,
+    save(data:Users): Promise<void>,
 
     findUserByEmail(email: string): Promise<Users | null>,
 
@@ -14,5 +14,5 @@ export interface IUsersRepository {
 
     listAllUsers(): Promise<Users[]>
 
-    deleteUser(id: string): Promise<null>
+    deleteUser(id: string): Promise<void>
 }
