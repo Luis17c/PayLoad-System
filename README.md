@@ -87,7 +87,7 @@
 <p> 
   Regras:
   <ul>
-    <li> Lojistas apenas recebem uma transação. </li>
+    <li> Lojistas apenas recebem transações. </li>
     <li> O pagador deve ter saldo suficiente. </li>
     <li> A transação deve ser autorizada por um serviço externo. </li>
   </ul>
