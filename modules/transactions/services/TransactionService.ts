@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
 
-import { ICreateTransactionDTO } from "../dtos/ICreateTransactionDTO";
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
 import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
+
 import { SendMailService } from "../../../shared/infra/nodemailer/SendMailService";
 import { ISendMailDTO } from "../../../shared/infra/nodemailer/ISendMailDTO";
 
@@ -26,10 +26,10 @@ export class TransactionService{
         this.userRepository.save(payer)
         this.userRepository.save(receiver)
 
-        const x:ICreateTransactionDTO = {
+        const x = {
             value: transactionData.value,
-            payerId: payer,
-            receiverId: receiver,
+            payerId: payer.id,
+            receiverId: receiver.id,
         }
 
         const transaction = await this.transactionsRepository.createTransaction(x)

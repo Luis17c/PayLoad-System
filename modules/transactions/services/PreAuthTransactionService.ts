@@ -23,10 +23,8 @@ export class PreAuthTransactionService{
             throw new AppError("Balance isn't enought")
         }
 
-        if(!receiver){
+        if(!receiver || !payer){
             throw new AppError("User not found")
         }
-
-        return true
     }
 }

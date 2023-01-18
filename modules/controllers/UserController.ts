@@ -35,24 +35,14 @@ export class UserController{
         const checkUniqueData = container.resolve(CheckUniqueDataService)
         await checkUniqueData.use(userData.email, userData.cpfOrCnpj)
 
-        const emailExists = this.usersRepository.findUserByEmail(userData.email)
-
-        if (!emailExists) {
-            throw new AppError ("E-mail already in use")            
-        }
-
         const hashedPassword = await this.bcryptProvider.hash(userData.password)
         userData.password = hashedPassword
 
         const parsedBirth = new Date(userData.birth)
         userData.birth = parsedBirth
-
         const checkBirth = new CheckBirthService()
-        const birthIsValid = checkBirth.use(userData.birth)
-        if (!birthIsValid){
-            throw new AppError("User don't have 18 years old")
-        }
-        
+        checkBirth.use(userData.birth)
+   
         const createdUser = await this.usersRepository.createUser(userData)
         res.send(createdUser)
     }
@@ -64,15 +54,19 @@ export class UserController{
 
     public async remove(req:Request, res:Response){
         const id = req.body.id
+
         const user = await this.usersRepository.findUserById(id)
         if (!user){
             throw new AppError("User doesn't exists")
         }
+
         await this.usersRepository.deleteUser(id)
+
         const userNotRemove = await this.usersRepository.findUserById(id)
         if (userNotRemove){
             throw new AppError("User doesn't removed")
         }
+        
         res.send("User removed")
     }
 }

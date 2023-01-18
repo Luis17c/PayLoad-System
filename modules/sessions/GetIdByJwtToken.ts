@@ -1,4 +1,5 @@
 import { verify } from "jsonwebtoken"
+
 import { jwtConfig } from "../../config/jwtConfig"
 import { ITokenData } from "./interfaces/ITokenData"
 

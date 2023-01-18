@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 
 import { AppDataSource } from "../../../../shared/infra/typeorm/database";
 
-import { ICreateTransactionDTO } from "../../dtos/ICreateTransactionDTO";
+import { ITransactionDTO } from "../../dtos/ITransactionDTO";
 import { ITransactionsRepository } from "../../interfaces/ITransactionsRepository";
 import { Transactions } from "./Transactions";
 
@@ -12,7 +12,7 @@ export class TransactionsRepository implements ITransactionsRepository{
         this.ormRepository = AppDataSource.getRepository('transactions')
     }
 
-    public async createTransaction(data: ICreateTransactionDTO): Promise<Transactions> {
+    public async createTransaction(data: ITransactionDTO): Promise<Transactions> {
         const transaction = this.ormRepository.create(data)
 
 

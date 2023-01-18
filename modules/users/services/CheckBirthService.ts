@@ -1,3 +1,5 @@
+import AppError from "../../../shared/errors/AppError"
+
 export class CheckBirthService{
     constructor(){}
 
@@ -7,9 +9,7 @@ export class CheckBirthService{
         const diff = Math.floor((Date.now() - birthInMs) / 31557600000)
 
         if (diff < 18){
-            return false
+            throw new AppError("User doesn't have 18 years")
         }
-
-        return true
     }
 }

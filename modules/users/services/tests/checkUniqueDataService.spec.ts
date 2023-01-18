@@ -19,18 +19,19 @@ fakeRepository.createUser({
 const checkUniqueData = new CheckUniqueDataService(fakeRepository)
 
 describe("Test unique data service", ()=>{
-    it("should return false", async ()=>{
+    it("should return an app error", async ()=>{
         expect(
             await checkUniqueData.use("luisclaudio.praado@gmail.com", "cpf-teste2")
-        ).toBe(false)
-
+        ).toBe("E-Mail is already in use")
+        })
+    it("should throw an app error", async ()=>{
         expect(
            await checkUniqueData.use("luisclaudio.praado2@gmail.com", "cpf-teste")
-        ).toBe(false)
+        ).toBe("CPF or CNPJ is already in use")
     })
     
-    it("should return true", async ()=>{
+    it("should return nothing", async ()=>{
         expect(await checkUniqueData.use("luisclaudio.praado2@gmail.com", "cpf-teste2"))
-        .toBe(true)
+        .toBe(undefined)
     })
 })

@@ -1,9 +1,11 @@
 import axios from "axios";
+
 import { Request, Response } from "express";
+
 import { container, inject, injectable } from "tsyringe";
+
 import { extAuth } from "../../config/extAuth";
 import AppError from "../../shared/errors/AppError";
-import { IBcryptProvider } from "../../shared/infra/bcrypt/IBcryptProvider";
 import { ICacheRepository } from "../caching/interfaces/ICacheRepository";
 import GetIdByJwtToken from "../sessions/GetIdByJwtToken";
 import { ITransactionsRepository } from "../transactions/interfaces/ITransactionsRepository";
@@ -27,10 +29,7 @@ export class TransactionController{
         const preAuthTransaction = container.resolve(PreAuthTransactionService)
         const makeTransaction = container.resolve(TransactionService)
     
-        const preAuth = await preAuthTransaction.use(transactionData)
-        if(!preAuth){
-            throw new AppError("Transaction isn't pre authorized", )
-        }
+        await preAuthTransaction.use(transactionData)
 
         const auth = await (await axios.get(extAuth)).data.message
         if(auth != 'Autorizado'){
@@ -40,6 +39,7 @@ export class TransactionController{
         const transaction = await makeTransaction.use(transactionData)
 
         await this.cacheRepository.invalidate('transactions')
+
         res.send(transaction)
     }
 
