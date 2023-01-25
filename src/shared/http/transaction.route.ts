@@ -1,15 +1,16 @@
-import { Router } from "express";
+import { NextFunction, Router } from "express";
 import { container } from "tsyringe";
 
-import { TransactionController } from "../../modules/controllers/TransactionController";
-import EnsureAuthMiddle from "../../modules/sessions/EnsureAuthMiddle";
+import { TransactionController } from "../../../src/modules/controllers/TransactionController";
+import EnsureAuthMiddle from "../../../src/modules/sessions/EnsureAuthMiddle";
 
 export const transactionRoute = Router()
 
 const transactionController = container.resolve(TransactionController)
 
 const ensureAuthMiddle = container.resolve(EnsureAuthMiddle)
-transactionRoute.use(ensureAuthMiddle.use)
+transactionRoute.use('/', async (req, res, next:NextFunction)=>{
+    await ensureAuthMiddle.use(req, res, next)})
 
 transactionRoute.post('/create', async (req, res)=>{
     await transactionController.create(req, res)})

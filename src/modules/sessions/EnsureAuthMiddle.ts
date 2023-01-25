@@ -7,7 +7,6 @@ import AppError from "../../shared/errors/AppError";
 import { ITokenData } from "./interfaces/ITokenData";
 import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../users/interfaces/IUsersRepository";
-import { UsersRepository } from "../users/infra/typeorm/UsersRepository";
 
 @injectable()
 export default class EnsureAuthMiddle{
@@ -25,8 +24,8 @@ export default class EnsureAuthMiddle{
 
         const [, token] = authHeader.split(" ")
 
-        try{
             const { sub } = verify(token, jwtConfig.key) as ITokenData
+            console.log(sub)
 
             const user = await this.usersRepository.findUserById(sub)
 
@@ -35,8 +34,5 @@ export default class EnsureAuthMiddle{
             }
 
             next()
-        }catch(err){
-            console.log(err)
-        }
     }
 }

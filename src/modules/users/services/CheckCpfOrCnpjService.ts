@@ -1,5 +1,5 @@
 import { cpf, cnpj } from 'cpf-cnpj-validator'
-import AppError from '../../../shared/errors/AppError'
+import AppError from "../../../shared/errors/AppError"
 
 export class CheckAndFormatCpfOrCnpjService{
     constructor(){}
