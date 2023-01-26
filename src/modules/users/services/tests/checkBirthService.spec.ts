@@ -1,4 +1,4 @@
-import AppError from "../../../../shared/errors/AppError"
+import AppError from "@shared/errors/AppError"
 import { CheckBirthService } from "../CheckBirthService"
 
 describe("Check birth service",()=>{

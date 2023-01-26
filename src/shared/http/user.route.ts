@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 
-import { UserController } from "../../modules/controllers/UserController";
+import { UserController } from "@modules/controllers/UserController";
 
 export const userRoute = Router()
 

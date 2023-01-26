@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "host": "172.18.0.3",
+    "port": 5432,
+    "username": "postgres",
+    "password": "password",
+    "database": "postgres",
+    "synchronize": true,
+    "logging": false,
+    "entities": ["@modules/users/infra/typeorm/Users.ts", "@modules/transactions/infra/typeorm/Transactions.ts"],
+    "migrations": ["@shared/typeorm/migrations/*.ts"],
+    "subscribers": []
+}

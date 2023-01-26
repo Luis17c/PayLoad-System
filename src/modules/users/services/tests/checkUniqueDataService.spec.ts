@@ -1,6 +1,5 @@
 import "reflect-metadata"
 
-import AppError from "../../../../shared/errors/AppError"
 import { CheckUniqueDataService } from "../CheckUniqueDataService"
 import { FakeUsersRepository } from "./fakes/FakeUsersRepository"
 

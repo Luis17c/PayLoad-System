@@ -1,4 +1,4 @@
-import { Column, DriverOptionNotSetError, MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm"
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm"
 
 export class PayloadSysCreation1672768435500 implements MigrationInterface {
 

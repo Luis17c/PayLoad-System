@@ -7,7 +7,7 @@
    "license": "MIT",
    "scripts": {
       "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
-      "start": "ts-node-dev shared/server.ts",
+      "start": "ts-node-dev -r tsconfig-paths/register src/shared/server.ts",
       "test": "jest",
       "typeorm-run": "typeorm-ts-node-commonjs migration:run -d shared/typeorm/database.ts",
       "typeorm-revert": "typeorm-ts-node-commonjs migration:revert -d shared/typeorm/database.ts"

@@ -1,8 +1,8 @@
 import { NextFunction, Router } from "express";
 import { container } from "tsyringe";
 
-import { TransactionController } from "../../../src/modules/controllers/TransactionController";
-import EnsureAuthMiddle from "../../../src/modules/sessions/EnsureAuthMiddle";
+import { TransactionController } from "@modules/controllers/TransactionController";
+import EnsureAuthMiddle from "@modules/sessions/EnsureAuthMiddle";
 
 export const transactionRoute = Router()
 

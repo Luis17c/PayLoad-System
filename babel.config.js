@@ -5,11 +5,10 @@ module.exports = {
     ],
     plugins: [
         ["module-resolver", {
-            "root": ["./src"],
             "alias": {
-                "modules": "./modules",
-                "shared": "./shared",
-                "config": "./config"
+                "@modules": "./src/modules",
+                "@shared": "./src/shared",
+                "@config": "./src/config"
             }
         }],
         "babel-plugin-transform-typescript-metadata",

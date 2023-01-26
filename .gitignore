@@ -1,6 +1,7 @@
-.idea/
-.vscode/
-node_modules/
-coverage/
+.idea
+.vscode
+/node_modules
+/coverage
+/dist
 jest.config.ts
-.env/
+.env

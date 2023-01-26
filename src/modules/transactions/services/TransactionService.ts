@@ -28,8 +28,8 @@ export class TransactionService{
 
         const x = {
             value: transactionData.value,
-            payerId: payer.id,
-            receiverId: receiver.id,
+            payerId: payer,
+            receiverId: receiver,
         }
 
         const transaction = await this.transactionsRepository.createTransaction(x)
