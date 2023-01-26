@@ -4,12 +4,14 @@ module.exports = {
         "@babel/preset-typescript",
     ],
     plugins: [
-        [
-            "module-resolver",
-            {
-                
+        ["module-resolver", {
+            "root": ["./src"],
+            "alias": {
+                "modules": "./modules",
+                "shared": "./shared",
+                "config": "./config"
             }
-        ],
+        }],
         "babel-plugin-transform-typescript-metadata",
         ["@babel/plugin-proposal-decorators", {legacy: true}],
         ["@babel/plugin-proposal-class-properties", {loose:true}]

@@ -1,13 +1,13 @@
 import { container } from "tsyringe";
 
-import { IUsersRepository } from "../../../src/modules/users/interfaces/IUsersRepository";
-import { UsersRepository } from "../../../src/modules/users/infra/typeorm/UsersRepository";
+import { IUsersRepository } from "@modules/users/interfaces/IUsersRepository";
+import { UsersRepository } from "@modules/users/infra/typeorm/UsersRepository";
 
-import { ITransactionsRepository } from "../../../src/modules/transactions/interfaces/ITransactionsRepository";
-import { TransactionsRepository } from "../../../src/modules/transactions/infra/typeorm/TransactionsRepository";
+import { ITransactionsRepository } from "@modules/transactions/interfaces/ITransactionsRepository";
+import { TransactionsRepository } from "@modules/transactions/infra/typeorm/TransactionsRepository";
 
-import { ICacheRepository } from "../../../src/modules/caching/interfaces/ICacheRepository";
-import { CacheRepository } from "../../../src/modules/caching/redis/CacheRepository";
+import { ICacheRepository } from "@modules/caching/interfaces/ICacheRepository";
+import { CacheRepository } from "@modules/caching/redis/CacheRepository";
 
 import { IBcryptProvider } from "../infra/bcrypt/IBcryptProvider";
 import { BcryptProvider } from "../infra/bcrypt/BcryptProvider";

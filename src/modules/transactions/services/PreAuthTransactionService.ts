@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { ITransactionDTO } from "../dtos/ITransactionDTO";
-import AppError from "../../../shared/errors/AppError";
+import AppError from "@shared/errors/AppError";
 import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 
 @injectable()

@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 
 import { container, inject, injectable } from "tsyringe";
 
-import AppError from "../../shared/errors/AppError";
+import AppError from "@shared/errors/AppError";
 
-import { IBcryptProvider } from "../../shared/infra/bcrypt/IBcryptProvider";
+import { IBcryptProvider } from "@shared/infra/bcrypt/IBcryptProvider";
 import { IUsersRepository } from "../users/interfaces/IUsersRepository";
 
 import { CheckBirthService } from "../users/services/CheckBirthService";

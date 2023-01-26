@@ -4,8 +4,8 @@ import { Request, Response } from "express";
 
 import { container, inject, injectable } from "tsyringe";
 
-import { extAuth } from "../../config/extAuth";
-import AppError from "../../shared/errors/AppError";
+import { extAuth } from "@config/extAuth";
+import AppError from "@shared/errors/AppError";
 import { ICacheRepository } from "../caching/interfaces/ICacheRepository";
 import GetIdByJwtToken from "../sessions/GetIdByJwtToken";
 import { ITransactionsRepository } from "../transactions/interfaces/ITransactionsRepository";

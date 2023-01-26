@@ -4,8 +4,8 @@ import { ITransactionDTO } from "../dtos/ITransactionDTO";
 import { IUsersRepository } from "../../users/interfaces/IUsersRepository";
 import { ITransactionsRepository } from "../interfaces/ITransactionsRepository";
 
-import { SendMailService } from "../../../shared/infra/nodemailer/SendMailService";
-import { ISendMailDTO } from "../../../shared/infra/nodemailer/ISendMailDTO";
+import { SendMailService } from "@shared/infra/nodemailer/SendMailService";
+import { ISendMailDTO } from "@shared/infra/nodemailer/ISendMailDTO";
 
 @injectable()
 export class TransactionService{

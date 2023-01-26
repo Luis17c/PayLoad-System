@@ -1,8 +1,9 @@
-import { ICreateTransactionDTO } from "../dtos/ICreateTransactionDTO";
+import { Users } from "@modules/users/infra/typeorm/Users";
+
 import { Transactions } from "../infra/typeorm/Transactions";
 
 export interface ITransactionsRepository{
-    createTransaction(data:ICreateTransactionDTO): Promise<Transactions>
+    createTransaction(data:{value: number, payerId: Users, receiverId: Users}): Promise<Transactions>
     findTransactionById(transactionId:string): Promise<Transactions | null>
     save(transaction: Transactions): Promise<void>
     listAll(): Promise<Transactions[]>

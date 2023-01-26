@@ -1,10 +1,10 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../shared/infra/typeorm/database"; 
+import { AppDataSource } from "@shared/infra/typeorm/database"; 
 
-import { ITransactionDTO } from "../../dtos/ITransactionDTO";
 import { ITransactionsRepository } from "../../interfaces/ITransactionsRepository";
 import { Transactions } from "./Transactions";
+import { Users } from "@modules/users/infra/typeorm/Users";
 
 export class TransactionsRepository implements ITransactionsRepository{
     private ormRepository: Repository<Transactions>
@@ -12,9 +12,8 @@ export class TransactionsRepository implements ITransactionsRepository{
         this.ormRepository = AppDataSource.getRepository('transactions')
     }
 
-    public async createTransaction(data: ITransactionDTO): Promise<Transactions> {
+    public async createTransaction(data: {value: number, payerId: Users, receiverId: Users}): Promise<Transactions> {
         const transaction = this.ormRepository.create(data)
-
 
         await this.ormRepository.save(transaction)
 

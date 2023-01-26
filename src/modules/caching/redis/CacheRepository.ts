@@ -1,6 +1,6 @@
 import Redis from "ioredis"
 
-import cache from "../../../config/cache";
+import cache from "@config/cache";
 import { ICacheRepository } from "../interfaces/ICacheRepository";
 
 export class CacheRepository implements ICacheRepository{

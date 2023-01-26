@@ -8,6 +8,12 @@
       "module": "commonjs",
       "moduleResolution": "node",
       "outDir": "./build",
+      "baseUrl": ".",
+      "paths": {
+         "@config/*": ["./src/config/*"],
+         "@modules/*": ["./src/modules/*"],
+         "@shared/*": ["./src/shared/*"]
+      },
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
