@@ -7,6 +7,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+ENV RUN_DOCKER=1 
 
-CMD ["npm", "start"]
+EXPOSE 3000

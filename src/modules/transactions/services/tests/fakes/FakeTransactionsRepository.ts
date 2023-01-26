@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid"
 
-import { Transactions } from "../../../infra/typeorm/Transactions";
+import { Transactions } from "../../../infra/typeorm/entities/Transactions";
 import { ITransactionsRepository } from "../../../interfaces/ITransactionsRepository";
 
 export class FakeTransactionsRepository implements ITransactionsRepository{

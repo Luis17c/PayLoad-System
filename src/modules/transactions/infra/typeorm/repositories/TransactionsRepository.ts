@@ -1,15 +1,15 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "@shared/infra/typeorm/database"; 
+import { appDataSrc } from "@shared/infra/typeorm/database"; 
 
-import { ITransactionsRepository } from "../../interfaces/ITransactionsRepository";
-import { Transactions } from "./Transactions";
-import { Users } from "@modules/users/infra/typeorm/Users";
+import { ITransactionsRepository } from "../../../interfaces/ITransactionsRepository";
+import { Transactions } from "../entities/Transactions";
+import { Users } from "@modules/users/infra/typeorm/entities/Users";
 
 export class TransactionsRepository implements ITransactionsRepository{
     private ormRepository: Repository<Transactions>
     constructor(){
-        this.ormRepository = AppDataSource.getRepository('transactions')
+        this.ormRepository = appDataSrc.getRepository('transactions')
     }
 
     public async createTransaction(data: {value: number, payerId: Users, receiverId: Users}): Promise<Transactions> {

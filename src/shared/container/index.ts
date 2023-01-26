@@ -1,10 +1,10 @@
 import { container } from "tsyringe";
 
 import { IUsersRepository } from "@modules/users/interfaces/IUsersRepository";
-import { UsersRepository } from "@modules/users/infra/typeorm/UsersRepository";
+import { UsersRepository } from "@modules/users/infra/typeorm/repositories/UsersRepository";
 
 import { ITransactionsRepository } from "@modules/transactions/interfaces/ITransactionsRepository";
-import { TransactionsRepository } from "@modules/transactions/infra/typeorm/TransactionsRepository";
+import { TransactionsRepository } from "@modules/transactions/infra/typeorm/repositories/TransactionsRepository";
 
 import { ICacheRepository } from "@modules/caching/interfaces/ICacheRepository";
 import { CacheRepository } from "@modules/caching/redis/CacheRepository";

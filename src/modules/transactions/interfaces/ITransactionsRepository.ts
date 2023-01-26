@@ -1,6 +1,6 @@
-import { Users } from "@modules/users/infra/typeorm/Users";
+import { Users } from "@modules/users/infra/typeorm/entities/Users";
 
-import { Transactions } from "../infra/typeorm/Transactions";
+import { Transactions } from "../infra/typeorm/entities/Transactions";
 
 export interface ITransactionsRepository{
     createTransaction(data:{value: number, payerId: Users, receiverId: Users}): Promise<Transactions>

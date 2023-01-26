@@ -2,20 +2,15 @@ import "reflect-metadata"
 
 import { DataSource } from "typeorm"
 
-import data from "../../../../ormconfig.json"
+const root = process.env.TS_NODE_DEV === undefined ? 'dist' : 'src';
+const postgresHost = process.env.RUN_DOCKER ? 'postgres' : 'localhost';
 
-export const AppDataSource = new DataSource({
-    type: "postgres",
-    host: data.host,
-    port: data.port,
-    username: data.username,
-    password: data.password,
-    database: data.database,
-    synchronize: data.synchronize,
-    logging: data.logging,
-    entities: data.entities,
-    migrations: data.migrations,
-    subscribers: data.subscribers,
+export const appDataSrc = new DataSource({
+    type: 'postgres',
+    host: postgresHost,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
+    entities: [`./${root}/modules/**/infra/typeorm/entities/*.{js,ts}`],
+    migrations: [`./${root}/shared/infra/typeorm/migrations/*.{js,ts}`],
 })
-
-AppDataSource.initialize()

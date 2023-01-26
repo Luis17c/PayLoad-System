@@ -13,7 +13,7 @@ export default {
 
     config: {
         redis: {
-            host: '172.18.0.3',
+            host: 'cache',
             port: 6379,
             password: "password",
         },
