@@ -8,6 +8,7 @@
    "scripts": {
       "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
       "start": "ts-node-dev -r tsconfig-paths/register src/shared/server.ts",
+      "start-js": "ts-node-dev -r tsconfig-paths/register dist/shared/server.js",
       "test": "jest",
       "typeorm-run": "typeorm-ts-node-commonjs migration:run -d src/shared/infra/typeorm/database.ts",
       "typeorm-revert": "typeorm-ts-node-commonjs migration:revert -d src/shared/typeorm/database.ts"
