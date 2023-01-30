@@ -30,12 +30,8 @@ jobs:
           key: ${{ secrets.ssh_key }}
           source: "., !node_modules"
           target: "~/app/PayLoad-System"
-        
-      #- name: Run Tests
-        #run: yarn test
-      
-      - name: Run api
-        run: docker-compose up -d
-        
-      - name: Run migrations
-        run: yarn typeorm-run
+          script:
+            cd app/PayLoad-System
+            yarn
+            yarn build
+            node dist/shared/server.js        
