@@ -20,20 +20,14 @@ jobs:
           
       - name: Install Dependencies
         run: yarn 
-      
-      - name: Test printing your secret (Remove this step in production)
-        env: 
-          testando: ${{ secrets.SSH_PORT }}
-        if: env.testando == 22
-        run: echo "ablueablue"
-        
+  
       - name: Connect aws
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{ secrets.ssh_host }}
+          username: ${{ secrets.ssh_user }}
+          port: ${{ secrets.ssh_port }}
+          key: ${{ secrets.ssh_key }}
           source: "., !node_modules"
           target: "test"
     
