@@ -22,7 +22,7 @@ jobs:
         run: yarn 
       
       - name: Test printing your secret (Remove this step in production)
-        run: cat $HOME/secrets/SSH_KEY.json
+        run: echo ${{ secrets.SSH_KEY }}
         
       - name: Connect aws
         uses: appleboy/scp-action@master
