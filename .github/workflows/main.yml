@@ -22,7 +22,8 @@ jobs:
         run: yarn 
       
       - name: Test printing your secret (Remove this step in production)
-        run: echo ${{ secrets.SSH_KEY }}
+        if: ${{ secrets.SSH_PORT }}} == 22
+        run: echo "ablueablue"
         
       - name: Connect aws
         uses: appleboy/scp-action@master
