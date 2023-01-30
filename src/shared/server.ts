@@ -24,7 +24,7 @@ appDataSrc.initialize()
     .then(async () => {
         await appDataSrc.synchronize()
 
-        app.listen(3000, ()=>{
+        app.listen(3030, ()=>{
             console.log("Server on!")
         })
     })

@@ -8,14 +8,17 @@ interface ICacheConfig {
     }
 }
 
+const root = process.env.TS_NODE_DEV === undefined ? 'dist' : 'src';
+const postgresHost = process.env.RUN_DOCKER ? 'cache' : 'localhost';
+
 export default {
     driver: 'redis',
 
     config: {
         redis: {
-            host: 'cache',
+            host: process.env.RUN_DOCKER,
             port: 6379,
-            password: "password",
+            password: process.env.POSTGRES_PASSWORD,
         },
     
     }
