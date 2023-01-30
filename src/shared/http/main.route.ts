@@ -11,3 +11,7 @@ mainRoute.use('/user', userRoute)
 mainRoute.use('/transaction', transactionRoute)
 
 mainRoute.use('/session', sessionRoute)
+
+mainRoute.use('/', (req, res)=>{
+    res.send("Hello World!")
+})
