@@ -16,7 +16,7 @@ export default {
 
     config: {
         redis: {
-            host: "172.19.0.2",
+            host: process.env.RUN_DOCKER,
             port: 6379,
             password: process.env.POSTGRES_PASSWORD,
         },

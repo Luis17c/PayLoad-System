@@ -7,8 +7,8 @@ const postgresHost = process.env.RUN_DOCKER ? 'postgres' : 'localhost';
 
 export const appDataSrc = new DataSource({
     type: 'postgres',
-    host: "172.19.0.4",
-    port: 5432,
+    host: process.env.RUN_DOCKER,
+    port: 5433,
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
