@@ -22,7 +22,9 @@ jobs:
         run: yarn 
       
       - name: Test printing your secret (Remove this step in production)
-        if: ${{ secrets.SSH_PORT }}} == 22
+        env: 
+          testando: ${{ secrets.SSH_PORT }}
+        if: env.testando == 22
         run: echo "ablueablue"
         
       - name: Connect aws
